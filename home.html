@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+  <html lang="pt-br">
+    <head>
+       <meta charset="UTF-8">
+       <!--Título da página -->
+       <title>Materialize Examples</title>
+       
+       <!-- Seção de importações -->
+       <!-- Importando Google Icon Font -->
+       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      
+       <!-- Importando materialize.css -->
+       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+       <!-- CDN -->
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+      
+       <!-- Faz o navegador entender que o site é otimizado mobile -->
+       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   </head>
+   
+   <body>
+       <!-- Utilizando cores do Materialize para textos e paineis -->
+       <!-- configurações para o painel -->
+       <div class="card-panel hoverable cyan z-depth-3">
+          <!-- Configurações do texto -->
+          <span class="grey-text text-lighten-4 center-align">
+             <h1>Florduino</h1>
+          </span>
+       </div>
+
+       <div class="card-panel hoverable cyan z-depth-3"> 
+         <span class="center-align">
+           <h5 class="header col s12 light">Analise de dados por telemetria para tomada de decisões no cultivo de flores para a floricultura ornamental</h5> 
+         </span>
+       </div>
+
+       <!-- deixando o conteudo da apgina em um Grid  -->
+       <div class="container center-align">
+         <p class="flow-text"> Meu nome é texto responsivo </p> <!-- texto responsivo -->
+         <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+       </div>
+       <br>
+
+       <!-- Linhas e colunas -->
+       <div class="row blue">
+       <div class="col s1">1</div>
+       <div class="col s1">2</div>
+       <div class="col s1">3</div>
+       <div class="col s1">4</div>
+       <div class="col s1">5</div>
+       <div class="col s1">6</div>
+       <div class="col s1">7</div>
+       <div class="col s1">8</div>
+       <div class="col s1">9</div>
+       <div class="col s1">10</div>
+       <div class="col s1">11</div>
+       <div class="col s1">12</div>
+       </div>
+
+       <!-- Linhas e colunas -->
+       <div class="row red center-align"> 
+       <div class="col s12">Essa div tem o tamanho de 12-colunas</div>
+         <div class="col s6">Essa div tem o tamanho de 6-colunas</div>
+         <div class="col s6">Essa div tem o tamanho de 6-colunas</div>
+       </div>
+
+       <div class="left">Texto</div>
+       <div class="right">Texto</div>
+       <br>
+       
+      <div class="card-panel hoverable center-align"> Hoverable Card Panel</div> <!-- Efeito de sombra no card quando passa o mouse -->
+
+       <!-- Utilizando cores do Materialize para paineis e textos -->
+       <div class="card-panel cyan red-text text-darken-3 z-depth-3 center-align">Texto vermelho no painel</div>
+       
+       <!-- Títulos-->
+       <h1>Paralax Template</h1>
+       <h2>Título</h2>
+       <h3>Título</h3>
+       <h4>Título</h4>
+       <h5>Título</h5>
+       <h6>Título</h6>
+       
+       <script> 
+         $('.carousel.carousel-slider').carousel({fullWidth: true}); 
+       </script>
+  
+  <div class="carousel carousel-slider">
+    <a class="carousel-item" href="#one!"><img src="img/1.jpeg"></a>
+    <a class="carousel-item" href="#two!"><img src="img/2.jpg"></a>
+    <a class="carousel-item" href="#three!"><img src="img/3.jpeg"></a>
+    <a class="carousel-item" href="#four!"><img src="img/4.jpeg"></a>
+  </div>
+      
+      <!-- Navbar goes here -->
+
+    <!-- Page Layout here -->
+    <div class="row">
+
+      <div class="col s12 m4 l3"> <!-- Note that "m4 l3" was added -->
+        <!-- Grey navigation panel
+
+              This content will be:
+          3-columns-wide on large screens,
+          4-columns-wide on medium screens,
+          12-columns-wide on small screens  -->
+
+      </div>
+
+      <div class="col s12 m8 l9"> <!-- Note that "m8 l9" was added -->
+        <!-- Teal page content
+
+              This content will be:
+          9-columns-wide on large screens,
+          8-columns-wide on medium screens,
+          12-columns-wide on small screens  -->
+       <!-- Tabela -->
+       <table class="centered bordered highlight responsive-table">
+        <thead>
+          <tr> 
+              <th>Name</th>
+              <th>Item Name</th>
+              <th>Item Price</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Alvin</td>
+            <td>Eclair</td>
+            <td>$0.87</td>
+          </tr>
+          <tr>
+            <td>Alan</td>
+            <td>Jellybean</td>
+            <td>$3.76</td>
+          </tr>
+          <tr>
+            <td>Jonathan</td>
+            <td>Lollipop</td>
+            <td>$7.00</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+    </div>
+       <script src="js/Chart.js"></script>
+       
+       <script>
+           var myChart = new Chart({...})
+       </script>
+
+       <canvas id="myChart" width="200" height="200"></canvas>
+        
+       <script>
+          var ctx = document.getElementById("myChart");
+          var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [{
+              label: '# of Votes',
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+            }]
+           },
+          options: {
+            scales: {
+               yAxes: [{
+                 ticks: {
+                    beginAtZero:true
+                    }
+                 }]
+               }
+            }
+        });
+        </script>
+
+    <br>
+    
+    <script> 
+     $(".button-collapse").sideNav(); 
+     $('.button-collapse').sideNav('show');
+    </script>
+
+      <ul id="slide-out" class="side-nav">
+        <li><div class="userView">
+         <div class="background">
+           <img src="images/office.jpg">
+         </div>
+       <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
+       <a href="#!name"><span class="white-text name">John Doe</span></a>
+       <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+       </div></li>
+         <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+         <li><a href="#!">Second Link</a></li>
+         <li><div class="divider"></div></li>
+         <li><a class="subheader">Subheader</a></li>
+         <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    </ul>
+
+    <ul id="slide-out" class="side-nav">
+      <li><a href="#!">First Sidebar Link</a></li>
+      <li><a href="#!">Second Sidebar Link</a></li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Dropdown<i class="material-icons">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li><a href="#!">First</a></li>
+                <li><a href="#!">Second</a></li>
+                <li><a href="#!">Third</a></li>
+                <li><a href="#!">Fourth</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="#!">First Sidebar Link</a></li>
+      <li><a href="#!">Second Sidebar Link</a></li>
+      <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+      <ul id='dropdown1' class='dropdown-content'>
+        <li><a href="#!">First</a></li>
+        <li><a href="#!">Second</a></li>
+        <li><a href="#!">Third</a></li>
+        <li><a href="#!">Fourth</a></li>
+      </ul>
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+
+    <br>
+       
+       <!-- Imagem responsiva -->
+       <img src="img/flores.jpg" class="responsive-img">
+       
+       <!-- Imagem responsiva utilizando a classe "circle"-->
+       <img src="img/ArduinoCommunityLogo.png" class="responsive-img circle"> 
+       
+       <!-- Vídeo responsivo -->
+       <div class="video-container"> 
+         <iframe src="https://www.youtube.com/embed/jQf1cWPKfto" frameborder="0" allowfullscreen></iframe>
+       </div>
+
+       <!-- Vídeo com tamanho fixo -->
+       <iframe width="560" height="315" src="https://www.youtube.com/embed/jQf1cWPKfto" frameborder="0" allowfullscreen></iframe>
+
+       <!-- Player de vídeo -->
+       <video class="responsive-video" controls>
+          <source src="movie.mp4" type="video/mp4">
+       </video>
+
+       <iframe src="https://embed.spotify.com/?uri=spotify%3Atrack%3A3NKVUA7K9qBtDaIfW6NZJp" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+       
+       <div class="video-container">
+          <iframe src="https://embed.spotify.com/?uri=spotify%3Atrack%3A6OnYQKTc5fbSGbIpaH4KxL" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+       </div>
+
+       <!-- Seção de Importações -->
+       <!-- Importando o jQuery antes do materialize.js -->
+       <script src="js/jquery.js"></script>
+       <!-- CDN -->
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+       
+       <!-- Importando o materialize.js -->
+       <script type="text/javascript" src="js/materialize.js"></script>	
+       <!-- CDN -->
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
+   </body>
+ 
+ </html>

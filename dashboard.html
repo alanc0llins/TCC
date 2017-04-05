@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Dashboard</title>
+
+  <script src="js/Chart.bundle.js"></script>
+  <script src="js/utils.js"></script>
+  <style>
+    canvas {
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
+  </style>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+<!--Utilizando o Chastist.js -->  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+<script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+
+<script src="js/chartist-plugin-threshold.js"></script>
+
+</head>
+
+<body>
+	
+    <div class="nav-wrapper">
+    
+  <!--Navbar Principal -->
+  <nav class="grey lighten-4" role="navigation">
+     <div class="container">
+       <!--Configurações do logo -->
+       <a id="logo-container" href="" class="brand-logo center"><i class="material-icons">polymer</i>Smart Garden</a>
+     </div>
+
+  <div class="nav-wrapper">     
+
+  <!-- Função da SidNav -->
+  <script> 
+    $(".button-collapse").sideNav(); 
+    $('.button-collapse').sideNav('show');
+  </script>
+  
+  <!-- Opções de configuração da SidNav -->
+  <ul id="slide-out" class="side-nav">  
+      <li>
+        <div class="userView">
+          <div class="background white">
+            <img src="img/wall.jpg">
+          </div>
+          <a href="#!user"><img class="circle" src="img/lualana.jpg"></a>
+          <a href="#!name"><span class="white-text name">Lana Del Rey</span></a>
+          <a href="#!email"><span class="white-text email">lanadelrey@gmail.com</span></a>
+        </div>
+      </li>
+
+      <!-- Dropdown na SidNav -->    
+      <ul class="collapsible collapsible-accordion">
+        <li><a class="collapsible-header">Opções<i class="material-icons">settings</i></a>
+         <div class="collapsible-body">
+           <ul>
+            <li><a href="#!"><i class="material-icons">face</i>Perfil</a></li>
+            <li><a href="#!"><i class="material-icons">exit_to_app</i>Sair</a></li>
+           </ul>
+         </div>
+        </li>
+      </ul>
+
+      <!--Linha divisória -->
+      <li><div class="divider"></div></li>
+        <!-- Funções da NavBar para mobile -->
+        <li><a class="subheader">Subheader</a></li>
+        <li><a class="waves-effect" href="https://www.facebook.com/joaovictor.pistorio"><i class="material-icons">code</i>Autor</a></li>
+        <li><a class="waves-effect" href="dashboard.html"><i class="material-icons">view_quilt</i>Dashboard</a></li>
+        <li><a class="waves-effect" href="#!">Second Sidebar Link</a></li>
+        <li class="no-padding">
+      </li>
+  </ul>
+  
+  <!--Opções da SidNav-->
+  <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+
+  <!-- Opções da Navbar -->
+    <ul class="right hide-on-med-and-down">
+      <!-- Menu dashboard -->
+      <li><a href="dashboard.html"><i class="material-icons">view_quilt</i></a></li>
+      <!-- Menu Notificações -->
+      <li><a href="#!menu"><i class="material-icons">notifications</i></a></li>
+      <!-- Menu autor linkado com o facebook -->
+      <li><a href="https://www.facebook.com/joaovictor.pistorio"><i class="material-icons">code</i></a></li>
+      
+      <li>
+        <a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons left">settings</i>
+        Opções</a>
+      </li>
+      <ul id='dropdown1' class='dropdown-content'>
+        <!--- Coleção de opções no canto superior direito -->
+        <li><a href="#!"><i class="material-icons">face</i>Perfil</a></li>
+        <li><a href="#!"><i class="material-icons">exit_to_app</i>Sair</a></li>
+      </ul>
+    </ul>
+
+    </div>
+  </nav>
+
+
+<!-- Page Layout here -->
+<div class="row">
+    <div class="col s12 m12 l3"> 
+</div>
+
+<!-- seção com 9 de largura -->
+<div class="col s12 m12 l12"> <!-- Note that "m8 l9" was added -->
+        <!-- Teal page content
+
+              This content will be:
+          9-columns-wide on large screens,
+          8-columns-wide on medium screens,
+          12-columns-wide on small screens  -->
+       <!-- Tabela -->
+     
+    <!-- Gráfico dentro de um card -->
+    <!-- Configurações do card -->
+    <div class="col s12 m12 l6">
+    <div class="card grey lighten-3 center"> 
+    <span class="card-title black-text center">Gráfico com Charts.js</span>
+    <div class="card-image">
+    
+    <div id="container" style="width: 100%;">
+       <canvas id="canvas"></canvas>
+    </div>
+    
+    <br>
+    <!-- Botões abaixo do gráfico -->
+    <a id ="randomizeData" class="waves-effect waves-light btn blue lighten-4 black-text light">Randon</a>
+    <a id ="addDataset" class="waves-effect waves-light btn blue lighten-4 black-text light">+ Dataset</a>
+    <a id ="removeDataset" class="waves-effect waves-light btn blue lighten-4 black-text light">- Dataset</a>
+    <br>
+    <br>
+    <a id ="addData" class="waves-effect waves-light btn blue lighten-4 black-text light">+ Data</a>
+    <a id ="removeData" class="waves-effect waves-light btn blue lighten-4 black-text light">- Data</a>
+
+    <script>
+        var MONTHS = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+        var color = Chart.helpers.color;
+        var barChartData = {
+            labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho"],
+            datasets: [{
+                label: 'Dataset 1',
+                backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+                borderColor: window.chartColors.red,
+                borderWidth: 1,
+                data: [
+                    randomScalingFactor(), 
+                    randomScalingFactor(), 
+                    randomScalingFactor(), 
+                    randomScalingFactor(), 
+                    randomScalingFactor(), 
+                    randomScalingFactor(), 
+                    randomScalingFactor()
+                ]
+            }, {
+                label: 'Dataset 2',
+                backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+                borderColor: window.chartColors.blue,
+                borderWidth: 1,
+                data: [
+                    randomScalingFactor(), 
+                    randomScalingFactor(), 
+                    randomScalingFactor(), 
+                    randomScalingFactor(), 
+                    randomScalingFactor(), 
+                    randomScalingFactor(), 
+                    randomScalingFactor()
+                ]
+            }]
+
+        };
+
+        window.onload = function() {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Chart.js Bar Chart'
+                    }
+                }
+            });
+
+        };
+
+        document.getElementById('randomizeData').addEventListener('click', function() {
+            var zero = Math.random() < 0.2 ? true : false;
+            barChartData.datasets.forEach(function(dataset) {
+                dataset.data = dataset.data.map(function() {
+                    return zero ? 0.0 : randomScalingFactor();
+                });
+
+            });
+            window.myBar.update();
+        });
+
+        var colorNames = Object.keys(window.chartColors);
+        document.getElementById('addDataset').addEventListener('click', function() {
+            var colorName = colorNames[barChartData.datasets.length % colorNames.length];;
+            var dsColor = window.chartColors[colorName];
+            var newDataset = {
+                label: 'Dataset ' + barChartData.datasets.length,
+                backgroundColor: color(dsColor).alpha(0.5).rgbString(),
+                borderColor: dsColor,
+                borderWidth: 1,
+                data: []
+            };
+
+            for (var index = 0; index < barChartData.labels.length; ++index) {
+                newDataset.data.push(randomScalingFactor());
+            }
+
+            barChartData.datasets.push(newDataset);
+            window.myBar.update();
+        });
+
+        document.getElementById('addData').addEventListener('click', function() {
+            if (barChartData.datasets.length > 0) {
+                var month = MONTHS[barChartData.labels.length % MONTHS.length];
+                barChartData.labels.push(month);
+
+                for (var index = 0; index < barChartData.datasets.length; ++index) {
+                    //window.myBar.addData(randomScalingFactor(), index);
+                    barChartData.datasets[index].data.push(randomScalingFactor());
+                }
+
+                window.myBar.update();
+            }
+        });
+
+        document.getElementById('removeDataset').addEventListener('click', function() {
+            barChartData.datasets.splice(0, 1);
+            window.myBar.update();
+        });
+
+        document.getElementById('removeData').addEventListener('click', function() {
+            barChartData.labels.splice(-1, 1); // remove the label first
+
+            barChartData.datasets.forEach(function(dataset, datasetIndex) {
+                dataset.data.pop();
+            });
+
+            window.myBar.update();
+        });
+    </script>
+    
+    <br>
+    <br>
+
+    </div>
+      <div class="card-content">
+        <p>I am a very simple card. I am good at containing small bits of information.
+         I am convenient because I require little markup to use effectively.
+        </p>
+      </div>
+      <div class="card-action">
+        <a href="#">This is a link</a>
+      </div>
+     
+  </div>
+</div>
+
+<!-- Gráfico dentro de um card -->
+    <!-- Configurações do card -->
+<div class="col s12 m12 l3">
+  <div class="card grey lighten-3 center">
+    <span class="card-title black-text center">Gráfico com Chartist.js</span>
+    <div class="card-image">
+    
+    <br>
+    <br>
+
+
+
+<div class="ct-chart ct-perfect-fourth"></div>
+<script> new Chartist.Line('.ct-chart', {
+  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+  series: [
+    [12, 9, 7, 8, 5],
+    [2, 1, 3.5, 7, 3],
+    [1, 3, 4, 5, 6]
+  ]
+}, {
+  fullWidth: true,
+  chartPadding: {
+    right: 40
+  }
+});  
+</script>
+
+    </div>
+      <div class="card-content">
+        <p>I am a very simple card. I am good at containing small bits of information.
+         I am convenient because I require little markup to use effectively.
+        </p>
+      </div>
+      <div class="card-action">
+        <a href="#">This is a link</a>
+      </div>
+     
+  </div>
+</div>
+
+ 
+<div class="col s12 m12 l3">
+  <div class="card grey lighten-3 center">
+    <span class="card-title black-text center">Gráfico com Chartist.js</span>
+    <div class="card-image">
+    
+    <br>
+    <br>
+
+
+
+<div class="ct-chart2 ct-perfect-fourth"></div>
+
+<script>
+var data = {
+  series: [5, 3, 4]
+};
+
+var sum = function(a, b) { return a + b };
+
+new Chartist.Pie('.ct-chart2', data, {
+  labelInterpolationFnc: function(value) {
+    return Math.round(value / data.series.reduce(sum) * 100) + '%';
+  }
+});
+</script>
+
+
+
+    </div>
+      <div class="card-content">
+        <p>I am a very simple card. I am good at containing small bits of information.
+         I am convenient because I require little markup to use effectively.
+        </p>
+      </div>
+      <div class="card-action">
+        <a href="#">This is a link</a>
+      </div>
+     
+  </div>
+</div>
+
+<div class="col s12 l6">
+  <div class="card grey lighten-3 center">
+    <span class="card-title black-text center">Gráfico em js</span>
+    <div class="card-image">
+    
+    <br>
+    <br>
+
+
+
+<div class="ct-chart3 ct-perfect-fourth"></div>
+
+<script>
+
+new Chartist.Line('.ct-chart3', {
+  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  series: [
+    [5, -4, 3, 7, 20, 10, 3, 4, 8, -10, 6, -8]
+  ]
+}, {
+  showArea: true,
+  axisY: {
+    onlyInteger: true
+  },
+  plugins: [
+    Chartist.plugins.ctThreshold({
+      threshold: 4
+    })
+  ]
+});
+</script>
+
+
+
+    </div>
+      <div class="card-content">
+        <p>I am a very simple card. I am good at containing small bits of information.
+         I am convenient because I require little markup to use effectively.
+        </p>
+      </div>
+      <div class="card-action">
+        <a href="#">This is a link</a>
+      </div>
+     
+  </div>
+</div>
+
+
+<!--Limite -->
+</div>  
+ 
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/Chart.js"></script>
+  <script>
+    var myChart = new Chart({...})
+  </script>
+
+  </body>
+</html>
